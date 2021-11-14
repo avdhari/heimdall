@@ -1,14 +1,20 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
+from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+
+class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+        app_label = 'website'
 
 
 class User(AbstractUser):
     """Default user for heimdall."""
 
     #: First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
+    name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
 
