@@ -278,3 +278,5 @@ heimdall/media/
 .env
 .envs/
 !.envs/.local/
+
+Makefile
