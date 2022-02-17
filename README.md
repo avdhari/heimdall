@@ -2,11 +2,10 @@
 
 ML Based Business Intelligence and Maintenance Platform.
 - built with Django
--
+- handles ETL processes, APIs, and DB
   
 ## Setup
 
-<br>
 
 > ### DB Setup
 - Install Postgres
@@ -20,7 +19,6 @@ create database heimdall
 DATABASE_URL=postgres://username:password@localhost:5432/heimdall
 ```
 
-<br>
 
 > ### virtual env set up
 
@@ -44,7 +42,6 @@ cp manage.py <virtual_env_path/bin>
 sudo ln -fs manage.py heimdall
 ```
 
-<br>
 
 > ### Dev server and Local 
 Here  we use a custom binary file `heimdall` to run commands instead of `python manage.py`
@@ -71,4 +68,6 @@ heimdall migrate
 ```
 heimdall createsuper
 ```
+
+
 
