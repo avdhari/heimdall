@@ -1,8 +1,8 @@
 heimdall
 ========
 
-Behold My Awesome Project!
-
+ML Based Business Intelligence and Maintenance Platform
+  
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/cookiecutter/cookiecutter-django/
      :alt: Built with Cookiecutter Django
