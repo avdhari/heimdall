@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 class BaseModel(models.Model):
     class Meta:
         abstract = True
-        app_label = 'website'
+        app_label = 'heimdall'
 
 
 class User(AbstractUser):
