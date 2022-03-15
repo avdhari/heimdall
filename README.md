@@ -46,6 +46,12 @@ sudo ln -fs manage.py heimdall
 > ### Dev server and Local 
 Here  we use a custom binary file `heimdall` to run commands instead of `python manage.py`
 
+- to use the local `.env` file, add the below line in the `postactivate` file in `env_name/bin` or simply do an export in the shell before ``runserver``
+
+```
+DJANGO_READ_DOT_ENV_FILE=True
+```
+
 - to spin development server
 ```
 heimdall runserver
