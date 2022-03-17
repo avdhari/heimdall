@@ -7,7 +7,17 @@ from django.utils.translation import gettext_lazy as _
 class BaseModel(models.Model):
     class Meta:
         abstract = True
-        app_label = 'heimdall'
+        app_label = 'users'
+
+
+class Company(BaseModel):
+    name = models.CharField(max_length=255, unique=True)
+    site_url = models.URLField()
+    contact_mail = models.EmailField()
+    admin_mail = models.EmailField()
+    is_paid = models.BooleanField(default=False)
+    expires_on = models.DateTimeField(null=True, blank=True)
+    created_by = models.ForeignKey("User", on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class User(AbstractUser):
