@@ -29,7 +29,9 @@ class Company(BaseModel):
     admin_mail = models.EmailField()
     is_paid = models.BooleanField(default=False)
     expires_on = models.DateTimeField(null=True, blank=True)
-    created_by = models.ForeignKey("User", on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey("User", on_delete=models.SET_NULL, null=True,
+                                   blank=True,
+                                   related_name='added_company')
 
     def __str__(self):
         return self.name
@@ -42,6 +44,13 @@ class User(AbstractUser):
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
+    company_mail = models.EmailField(null=True)
+    is_company_admin = models.BooleanField(default=False)
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True)
+    phone = models.CharField(max_length=12, null=True)
+
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         """Get url for user's detail view.

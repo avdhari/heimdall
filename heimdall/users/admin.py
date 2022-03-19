@@ -5,9 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from heimdall.users.forms import UserChangeForm, UserCreationForm
 
-from heimdall.users.models import CompanyAdmin, Company
+from heimdall.users.models import User, CompanyAdmin, Company
 
-User = get_user_model()
 
 
 @admin.register(User)
@@ -17,7 +16,7 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email")}),
+        (_("Personal info"), {"fields": ("name", "email", "company", "is_company_admin", "company_mail", "phone")}),
         (
             _("Permissions"),
             {
@@ -32,7 +31,7 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["username", "name", "is_superuser"]
+    list_display = ["username", "name", "company", "is_superuser",]
     search_fields = ["name"]
 
 
@@ -40,7 +39,7 @@ class UserAdmin(auth_admin.UserAdmin):
 class CompanyAdminAdmin(admin.ModelAdmin):
     list_display = ['name', 'company_owned', 'company_mail']
 
-    
+
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ['name', 'company_admin', 'is_paid', 'contact_mail', 'admin_mail']
