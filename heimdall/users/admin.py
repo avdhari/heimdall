@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from heimdall.users.forms import UserChangeForm, UserCreationForm
 
+from heimdall.users.models import CompanyAdmin, Company
+
 User = get_user_model()
 
 
@@ -32,3 +34,13 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     list_display = ["username", "name", "is_superuser"]
     search_fields = ["name"]
+
+
+@admin.register(CompanyAdmin)
+class CompanyAdminAdmin(admin.ModelAdmin):
+    list_display = ['name', 'company_owned', 'company_mail']
+
+    
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+    list_display = ['name', 'company_admin', 'is_paid', 'contact_mail', 'admin_mail']
