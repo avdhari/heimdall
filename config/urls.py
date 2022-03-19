@@ -9,7 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from heimdall.users.views import HomeView
 
 urlpatterns = [
-    path("", HomeView.as_view(template_name="pages/home.html"), name="home"),
+    path("", HomeView.as_view(), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

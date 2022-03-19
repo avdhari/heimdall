@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView, ListView
 from django.shortcuts import render
 
-User = get_user_model()
+from heimdall.users.models import User, Company
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -48,5 +48,5 @@ user_redirect_view = UserRedirectView.as_view()
 
 class HomeView(ListView):
     model = User
-    template_name = 'pages/home.html'
+    template_name = 'users/home.html'
     queryset = User.objects.all()
