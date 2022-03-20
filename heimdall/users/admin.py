@@ -4,9 +4,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from heimdall.users.forms import UserChangeForm, UserCreationForm
-
 from heimdall.users.models import User, CompanyAdmin, Company
-
 
 
 @admin.register(User)
@@ -37,9 +35,9 @@ class UserAdmin(auth_admin.UserAdmin):
 
 @admin.register(CompanyAdmin)
 class CompanyAdminAdmin(admin.ModelAdmin):
-    list_display = ['name', 'company_owned', 'company_mail']
+    list_display = ['name', 'company_owned', 'company_mail', 'is_removed', ]
 
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'company_admin', 'is_paid', 'contact_mail', 'admin_mail']
+    list_display = ['name', 'company_admin', 'is_paid', 'contact_mail', 'admin_mail', 'is_removed', ]

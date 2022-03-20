@@ -12,6 +12,7 @@ class BaseModel(models.Model):
 
 class CompanyAdmin(BaseModel):
     """Admin of the client company"""
+    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=200)
     mail = models.EmailField()
     company_mail = models.EmailField()
@@ -22,6 +23,7 @@ class CompanyAdmin(BaseModel):
 
 
 class Company(BaseModel):
+    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=255, unique=True)
     company_admin = models.ForeignKey(CompanyAdmin, on_delete=models.CASCADE)
     site_url = models.URLField()
