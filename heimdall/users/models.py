@@ -56,9 +56,15 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         """Get url for user's detail view.
-
-        Returns:
-            str: URL for user detail.
-
+        Returns: str -  URL for user detail.
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class Product(BaseModel):
+    is_removed = models.BooleanField(default=False)
+    name = models.CharField(max_length=255)
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True)
+    description = models.TextField(null=True)
+    product_site_url = models.URLField(null=True, blank=True)
+    
