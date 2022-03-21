@@ -67,4 +67,8 @@ class Product(BaseModel):
     company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True)
     description = models.TextField(null=True)
     product_site_url = models.URLField(null=True, blank=True)
+    keywords = models.TextField(null=True)
     
+
+    def __str__(self):
+        return str(self.company) + " | " + self.name
