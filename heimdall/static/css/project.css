@@ -18,6 +18,7 @@
   border: 1px solid;
   border-radius: 10px;
   padding: 10px 10px;
+  padding-bottom: 25px;
 }
 
 .container{
@@ -41,7 +42,7 @@
 
 .card {
   margin-top: .5rem;
-  transition: box-shadow .3s;
+  transition: box-shadow .25s;
   width: 250px;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -51,10 +52,31 @@
   
 }
 .card:hover {
-  box-shadow: 0px 10px 30px rgba(131, 140, 148, 0.719);
+  box-shadow: 0px 10px 20px rgba(131, 140, 148, 0.719);
 }
 
 .title-product{
   margin-top: 10px;
   padding-left: 10px;
+  font-weight: 500;
+  font-size: 2.215rem;
+}
+
+.anchor-product{
+  color: black;
+}
+
+.anchor-product:hover{
+  color: #e25d0f;
+  text-decoration: none;
+}
+
+
+.anchor-inventory{
+  color: black;
+}
+
+.anchor-inventory:hover{
+  color: #e25d0f;
+  text-decoration: none;
 }

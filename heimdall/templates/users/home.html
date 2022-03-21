@@ -7,14 +7,16 @@
     <div class="row">
         <div class="col-9 product-col">
           <div class="title-product">
-          <p class="h2">Products</p>
+          <p>Products</p>
           </div>
-        {% for user in object_list %}
+        {% for product in object_list %}
           <div class="card">
             <img src="{% static 'images/Heimdall.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{user.name}}</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title">
+              <a href="#" class="anchor-product">{{product.name}}</a> 
+              </h5>
+              <p class="card-text">{{product.description | truncatechars:100}}</p>
             </div>
           </div>
 		  
@@ -25,7 +27,9 @@
         <div class="card">
             <img src="{% static 'images/Heimdall.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Test</h5>
+              <h5 class="card-title">
+                <a href="#" class="anchor-inventory">Inventory</a>
+              </h5>
               <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
         </div>
