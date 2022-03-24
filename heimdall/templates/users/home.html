@@ -14,7 +14,7 @@
             <img src="{% static 'images/Heimdall.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">
-              <a href="#" class="anchor-product">{{product.name}}</a> 
+              <a href="{% url 'users:product-detail' product.pk %}" class="anchor-product">{{product.name}}</a> 
               </h5>
               <p class="card-text">{{product.description | truncatechars:100}}</p>
             </div>

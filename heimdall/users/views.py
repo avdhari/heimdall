@@ -2,12 +2,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView, ListView
+from django.views import generic
 
 from heimdall.users.models import User, Company, Product
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
 
     model = User
     slug_field = "username"
@@ -17,7 +17,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 
     model = User
     fields = ["name"]
@@ -33,7 +33,7 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 user_update_view = UserUpdateView.as_view()
 
 
-class UserRedirectView(LoginRequiredMixin, RedirectView):
+class UserRedirectView(LoginRequiredMixin, generic.RedirectView):
 
     permanent = False
 
@@ -44,7 +44,19 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 user_redirect_view = UserRedirectView.as_view()
 
 
-class HomeView(ListView):
+class HomeView(generic.ListView):
     model = Product
     template_name = 'users/home.html'
-    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        current_user = self.request.user
+        queryset = Product.objects.filter(company_id=current_user.company_id)
+        return queryset
+
+
+class ProductView(generic.DetailView):
+    model = Product
+    template_name = 'users/product_detail.html'
+
+
+product_view = ProductView.as_view()
