@@ -72,7 +72,7 @@ heimdall migrate
 
 - create superuser
 ```
-heimdall createsuper
+heimdall createsuperuser
 ```
 
 
