@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class BaseModel(models.Model):
+    is_removed = models.BooleanField(default=False)
+
     class Meta:
         abstract = True
         app_label = 'users'
@@ -12,7 +14,6 @@ class BaseModel(models.Model):
 
 class CompanyAdmin(BaseModel):
     """Admin of the client company"""
-    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=200)
     mail = models.EmailField()
     company_mail = models.EmailField()
@@ -23,7 +24,6 @@ class CompanyAdmin(BaseModel):
 
 
 class Company(BaseModel):
-    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=255, unique=True)
     company_admin = models.ForeignKey(CompanyAdmin, on_delete=models.CASCADE)
     site_url = models.URLField()
@@ -62,7 +62,6 @@ class User(AbstractUser):
 
 
 class Product(BaseModel):
-    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True)
     description = models.TextField(null=True)
@@ -70,4 +69,10 @@ class Product(BaseModel):
     keywords = models.TextField(null=True)
 
     def __str__(self):
-        return str(self.company) + " | " + self.name
+        return self.name + " | " + str(self.company)
+
+
+class ProductKeyword(BaseModel):
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    company = models.ForeignKey(Company, on_delete=models.PROTECT)
+    keywords = models.TextField()
