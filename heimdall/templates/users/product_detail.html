@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{product.name}} | {{product.company}} {% endblock title %}
 
 {% block content %}
 
@@ -7,6 +10,8 @@
 
 <p>{{product.description}}</p>
 
-<h4>{{product.keywords}}</h4>
+<h4>
+    Keywords: {{keywords.keywords}}
+</h4>
 
 {% endblock content %}

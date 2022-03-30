@@ -76,3 +76,6 @@ class ProductKeyword(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
     keywords = models.TextField()
+
+    def __str__(self):
+        return str(self.product)

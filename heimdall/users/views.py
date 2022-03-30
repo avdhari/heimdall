@@ -3,8 +3,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
+from django.shortcuts import render
 
-from heimdall.users.models import User, Company, Product
+from heimdall.users.models import User, Company, Product, ProductKeyword
 
 
 class UserDetailView(LoginRequiredMixin, generic.DetailView):
@@ -57,6 +58,11 @@ class HomeView(generic.ListView):
 class ProductView(generic.DetailView):
     model = Product
     template_name = 'users/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductView, self).get_context_data(**kwargs)
+        context['keywords'] = ProductKeyword.objects.get(product_id=self.object.id)
+        return context
 
 
 product_view = ProductView.as_view()
