@@ -60,7 +60,8 @@ class ProductView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductView, self).get_context_data(**kwargs)
-        context['keywords'] = ProductKeyword.objects.get(product_id=self.object.id)
+        keywords = ProductKeyword.objects.get(product_id=self.object.id).keywords
+        context['keywords'] = keywords.split('\n')
         return context
 
 

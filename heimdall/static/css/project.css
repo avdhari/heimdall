@@ -40,7 +40,7 @@
   width: 50%;
 }
 
-.card {
+.home-cards {
   margin-top: .5rem;
   transition: box-shadow .25s;
   width: 250px;
@@ -51,7 +51,7 @@
   margin-left: 1rem;
   
 }
-.card:hover {
+.home-cards:hover {
   box-shadow: 0px 10px 20px rgba(131, 140, 148, 0.719);
 }
 
