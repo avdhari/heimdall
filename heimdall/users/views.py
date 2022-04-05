@@ -44,7 +44,7 @@ class UserRedirectView(LoginRequiredMixin, generic.RedirectView):
 user_redirect_view = UserRedirectView.as_view()
 
 
-class HomeView(generic.ListView):
+class HomeView(LoginRequiredMixin, generic.ListView):
     model = Product
     template_name = 'users/home.html'
 
@@ -54,7 +54,7 @@ class HomeView(generic.ListView):
         return queryset
 
 
-class ProductView(generic.DetailView):
+class ProductView(LoginRequiredMixin, generic.DetailView):
     model = Product
     template_name = 'users/product_detail.html'
 
