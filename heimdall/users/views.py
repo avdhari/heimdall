@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
-from heimdall.users.models import User, Company, Product, ProductKeyword
+from heimdall.users.models import User, Company, Product, ProductKeyword  # noqa
 
 
 class UserDetailView(LoginRequiredMixin, generic.DetailView):
