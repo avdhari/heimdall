@@ -1,10 +1,17 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
+from django.http.response import Http404
 
 from heimdall.users.models import User, Company, Product, ProductKeyword  # noqa
+
+
+class AdminMixin(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        user = self.request.user
+        return user.is_superuser or user.is_company_admin
 
 
 class UserDetailView(LoginRequiredMixin, generic.DetailView):
