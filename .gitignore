@@ -280,3 +280,4 @@ heimdall/media/
 !.envs/.local/
 
 Makefile
+heimdall.pem
