@@ -1,3 +1,7 @@
 from django.contrib import admin
+from heimdall.athena.models import ScrapedData
 
-# Register your models here.
+
+@admin.register(ScrapedData)
+class ScrapedDataAdmin(admin.ModelAdmin):
+    list_display = ['title', 'generated_on']

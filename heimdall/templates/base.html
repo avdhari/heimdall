@@ -77,7 +77,12 @@
                 {# URL provided by django-allauth/account/urls.py #}
                 <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
               </li>
+
+             
             {% endif %}
+            <li class="nav-item"> 
+              <a  class="text-light nav-link"s href="{% url 'athena-home' %}">athena</a>
+            </li>
           </ul>
         </div>
       </nav>

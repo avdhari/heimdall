@@ -3,7 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
-from django.http.response import Http404
+# from django.http.response import Http404
 
 from heimdall.users.models import User, Company, Product, ProductKeyword  # noqa
 
