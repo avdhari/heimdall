@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 
 
 class BaseModel(models.Model):
@@ -67,9 +68,15 @@ class Product(BaseModel):
     description = models.TextField(null=True)
     product_site_url = models.URLField(null=True, blank=True)
     keywords = models.TextField(null=True)
+    slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
         return self.name + " | " + str(self.company)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
 
 
 class ProductKeyword(BaseModel):

@@ -64,6 +64,7 @@ class HomeView(LoginRequiredMixin, generic.ListView):
 class ProductView(LoginRequiredMixin, generic.DetailView):
     model = Product
     template_name = 'users/product_detail.html'
+    slug_field = "slug"
 
     def get_context_data(self, **kwargs):
         context = super(ProductView, self).get_context_data(**kwargs)
