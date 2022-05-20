@@ -1,12 +1,7 @@
-[Unit]
-Description=gunicorn daemon
-Requires=gunicorn.socket
-After=network.target
-[Service]
-User=root
-Group=www-data
-WorkingDirectory=/root/django_project
-ExecStart=/root/django_project/djangoenv/bin/gunicorn --access-logfile - --workers 3 --bind 
-unix:/run/gunicorn.sock          django_project.wsgi:application
-[Install]
-WantedBy=multi-user.target
+[program:heimdall]
+command=/root/deploys/heimdall/deploy/start_gunicorn.sh
+user=root
+autostart=true
+autorestart=true
+stdout_logfile=/tmp/gunicorn.log
+redirect_stderr=true
