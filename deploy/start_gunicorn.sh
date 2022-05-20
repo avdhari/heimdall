@@ -1,7 +1,7 @@
 
 PROJECR_DIR=/root/deploys/heimdall
-PORT=80
-SOCK="0.0.0.0:$PORT"
+PORT=8000
+SOCK="127.0.0.1:$PORT"
 USER=root
 GROUP=root
 WORKERS=3
