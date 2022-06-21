@@ -7,4 +7,10 @@
 
 <h1>Athena</h1>
 
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="link" id="" value="Enter the url" disabled>
+    <button class="btn btn-primary">Submit</button>
+</form>
+
 {% endblock content %}

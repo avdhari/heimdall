@@ -20,6 +20,9 @@ class ScrapedData(BaseModel):
     text_data = models.TextField()
     generated_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class ProductInsight(BaseModel):
 
