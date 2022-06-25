@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2>{{data_instance.title}}</h2>
+<small>{{data_instance.product}}</small>
+<br>
+<a class="btn btn-success" href="{{data_instance.source}}" target="_blank">Source</a>
+<hr>
+<p>
+    {{data_instance.text_data}}
+</p>
+{% endblock %}

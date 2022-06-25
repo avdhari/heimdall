@@ -6,11 +6,27 @@
 {% block content %}
 
 <h1>Athena</h1>
+<div class="row">
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{new_data_form.as_p}}
-    <button class="btn btn-primary">Submit</button>
-</form>
+<ul>
+    <div class="col-9">
+        {% for data in scraped_datas %}
+           <li>
+            <a href="{% url 'data-detail' data.pk %}">{{data.title}}</a>
+           </li>
+        {% endfor %}
+    </div>
+</ul>
+ 
+<div class="col-3">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{new_data_form.as_p}}
+        <button class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>
+
+
 
 {% endblock content %}
