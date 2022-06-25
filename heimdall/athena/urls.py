@@ -1,7 +1,9 @@
 from django.urls import path
-from heimdall.athena.views import home_view
+from heimdall.athena import views
 
 
 urlpatterns = [
-    path("", home_view, name="athena-home"),
+    path("", views.home_view, name="athena-home"),
+    path("data/<int:pk>/", views.data_detail, name="data-detail"),
+
 ]
