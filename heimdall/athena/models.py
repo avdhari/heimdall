@@ -2,6 +2,8 @@ from django.db import models
 from heimdall.users.models import Product
 from django.core.validators import MaxValueValidator
 
+from heimdall.athena.utils import get_raw_data, get_text_data, get_title
+
 
 class BaseModel(models.Model):
     is_removed = models.BooleanField(default=False)
@@ -22,6 +24,12 @@ class ScrapedData(BaseModel):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.title = get_title(self.source)
+        self.raw_data = get_raw_data(self.source)
+        self.text_data = get_text_data(self.source)
+        super(ScrapedData, self).save(*args, **kwargs)
 
 
 class ProductInsight(BaseModel):
