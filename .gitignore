@@ -282,3 +282,4 @@ heimdall/media/
 Makefile
 heimdall.pem
 .vscode
+amazon_cells_labelled.txt
