@@ -12,7 +12,7 @@
     <div class="col-9">
         {% for data in scraped_datas %}
            <li>
-            <a href="{% url 'data-detail' data.pk %}">{{data.title}}</a>
+            <a href="{% url 'data-detail' data.pk %}" class="btn btn-outline-dark data-instance">{{data.title}}</a>
            </li>
         {% endfor %}
     </div>
