@@ -283,3 +283,6 @@ Makefile
 heimdall.pem
 .vscode
 amazon_cells_labelled.txt
+heimdall_predictor.ipynb
+.ipynb_checkpoints
+heimdall_dataset.csv    
