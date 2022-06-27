@@ -11,7 +11,7 @@ def home_view(request):
         if new_data_form.is_valid():
 
             new_data_form.save()
-            return redirect('/')
+            return redirect('/  ')
     new_data_form = NewDataForm(cmp_id=request.user.company_id)
     scraped_datas = ScrapedData.objects.all()
     context = {

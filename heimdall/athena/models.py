@@ -59,5 +59,7 @@ class ProductInsight(BaseModel):
         return self.product.name + " | " + str(self.month) + " - " + str(self.year)
 
 
-class AttributeExtract(BaseModel):
-    pass
+class AttributeHitScore(BaseModel):
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    hit_rate = models.FloatField()
+    generated_on = models.DateTimeField(auto_now_add=True)
