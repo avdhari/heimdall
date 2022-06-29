@@ -27,3 +27,8 @@ def data_detail(request, pk):
         'data_instance': data_instance
     }
     return render(request, 'athena/data_detail.html', context)
+
+
+def predict_view(request):
+    
+    return render(request, 'athena/new_rate.html')

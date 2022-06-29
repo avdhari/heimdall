@@ -8,24 +8,31 @@
 <h1>Athena</h1>
 <div class="row">
 
-<ul>
-    <div class="col-9">
-        {% for data in scraped_datas %}
-           <li>
-            <a href="{% url 'data-detail' data.pk %}" class="btn btn-outline-dark data-instance">{{data.title}}</a>
-           </li>
-        {% endfor %}
-    </div>
-</ul>
- 
-<div class="col-3">
-    <form action="" method="post">
-        {% csrf_token %}
-        {{new_data_form.as_p}}
-        <button class="btn btn-primary">Submit</button>
-    </form>
-    </div>
+    <ul>
+        <div class="col-9">
+            {% for data in scraped_datas %}
+            <li>
+                <a href="{% url 'data-detail' data.pk %}" class="btn btn-outline-dark data-instance">{{data.title}}</a>
+            </li>
+            {% endfor %}
+        </div>
+    </ul>
+    
+    <div class="col-3">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{new_data_form.as_p}}
+            <button class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+
+        <a href="{% url 'new-rate' %}" target="_blank" class="btn btn-secondary">Get New Rate</a>
+        
+     </div>
+
+
 </div>
+
 
 
 
