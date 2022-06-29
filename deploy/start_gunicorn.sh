@@ -1,14 +1,15 @@
+#! /bin/bash
+
 
 PROJECR_DIR=/root/deploys/heimdall
-PORT=8000
-SOCK="127.0.0.1:$PORT"
+SOCKFILE="/var/run/heimdall-gunicorn.sock"
 USER=root
 GROUP=root
-WORKERS=3
+WORKERS=5
 SETTINGS_MODULE=config.settings.production
 WSGI_MODULE=config.wsgi
 TIMEOUT=180
-NAME="heimdall $PORT"
+NAME="heimdall"
 
 echo "Initiating $NAME as `whoami`"
 
@@ -19,11 +20,11 @@ source ~/.Envs/heimdall/bin/postactivate
 
 
 exec gunicorn ${WSGI_MODULE}:application \
-  --name "$NAME" \
-  --workers $WORKERS \
-  --user=$USER --group=$GROUP \
-  --bind=$SOCK \
-  --log-level=info \
-  --timeout=${TIMEOUT} \
-  --log-file=- \
-  --env DJANGO_SETTINGS_MODULE=$SETTINGS_MODULE
+	  --name "$NAME" \
+	  --workers $WORKERS \
+	  --user=$USER --group=$GROUP \
+	  --bind=unix:$SOCKFILE \
+	  --log-level=info \
+	  --timeout=${TIMEOUT} \
+	  --log-file=- \
+	  --env DJANGO_SETTINGS_MODULE=$SETTINGS_MODULE
