@@ -26,6 +26,16 @@
         </form>
         <br>
 
+
+        {% for rate in prod_rates %}
+            <div>
+                {{rate.month}}: {{rate.new_rate}}
+            </div>
+
+        {% endfor %}
+
+        <br>
+
         <a href="{% url 'new-rate' %}" target="_blank" class="btn btn-secondary">Get New Rate</a>
         
      </div>

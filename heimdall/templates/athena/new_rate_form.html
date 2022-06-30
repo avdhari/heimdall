@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | new rate {% endblock title %}
+
+
+{% block content %}
+
+<h1>New Rates</h1>
+
+<div class="row">
+
+    <div class="col-9">
+       
+
+        {% for rate in prod_rates %}
+            <div class="rates">
+                {{rate.month}} - {{rate.year}}: {{rate.new_rate}}
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+    
+    <div class="col-3">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{new_rate_form.as_p}}
+            <button class="btn btn-primary">Submit</button>
+        
+        </form>
+        <br>
+
+
+
+     </div>
+
+
+</div>
+
+{% endblock %}

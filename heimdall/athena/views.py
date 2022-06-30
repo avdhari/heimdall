@@ -1,8 +1,13 @@
+import os
 from django.shortcuts import render, redirect
+from django.conf import settings
 
-from heimdall.athena.forms import NewDataForm
+from heimdall.athena.forms import NewDataForm, NewRateForm
 from heimdall.athena.utils import get_raw_data
-from heimdall.athena.models import ScrapedData
+from heimdall.athena.models import ScrapedData, NewRate
+from heimdall.users.ml_utils import get_new_rate
+
+import numpy as np
 
 
 def home_view(request):
@@ -30,5 +35,17 @@ def data_detail(request, pk):
 
 
 def predict_view(request):
-    
-    return render(request, 'athena/new_rate.html')
+    if request.method == "POST":
+        new_rate_form = NewRateForm(request.POST, cmp_id=request.user.company_id)
+        if new_rate_form.is_valid():
+            new_rate_form.save()
+            return redirect('athena/')
+
+    new_rate_form = NewRateForm(cmp_id=request.user.company_id)
+    prod_rates = NewRate.objects.all().order_by('-generated_on')
+    context = {
+        "new_rate_form": new_rate_form,
+        'prod_rates': prod_rates,
+    }
+
+    return render(request, 'athena/new_rate_form.html', context)
