@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
 
-<h1>new product</h1>
+<h1>keywords</h1>
 
 <form action="" method="post">
     {% csrf_token %}
-    {{new_product_form.as_p}}
+    {{new_keyword_form.as_p}}
     <br>
     <button class="btn btn-success">Submit</button>
 </form>
+
 
 {% endblock %}
