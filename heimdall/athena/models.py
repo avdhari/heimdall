@@ -4,6 +4,8 @@ from django.core.validators import MaxValueValidator
 
 from heimdall.athena.utils import get_raw_data, get_text_data, get_title
 
+import numpy as np
+from heimdall.users.ml_utils import get_new_rate
 
 class BaseModel(models.Model):
     is_removed = models.BooleanField(default=False)
@@ -63,3 +65,23 @@ class AttributeHitScore(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     hit_rate = models.FloatField()
     generated_on = models.DateTimeField(auto_now_add=True)
+
+
+class NewRate(ProductInsight):
+    produced = models.PositiveIntegerField()
+    hit_rate = models.FloatField()
+    new_rate = models.FloatField(null=True, blank=True)
+    generated_on = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        attrs = np.array(
+            [[
+                float(self.production_capacity),
+                float(self.produced),
+                float(self.sales),
+                float(self.hit_rate),
+            ]]
+        )
+
+        self.new_rate = get_new_rate(attrs)
+        super(NewRate, self).save(*args, **kwargs)

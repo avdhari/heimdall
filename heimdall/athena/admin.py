@@ -1,5 +1,5 @@
 from django.contrib import admin
-from heimdall.athena.models import ScrapedData, ProductInsight, AttributeHitScore
+from heimdall.athena.models import ScrapedData, ProductInsight, AttributeHitScore, NewRate
 
 
 @admin.register(ScrapedData)
@@ -15,3 +15,8 @@ class ProductInsightAdmin(admin.ModelAdmin):
 @admin.register(AttributeHitScore)
 class AttributeExtractAdmin(admin.ModelAdmin):
     list_display = ['product', 'hit_rate', 'generated_on']
+
+
+@admin.register(NewRate)
+class NeeRateAdmin(admin.ModelAdmin):
+    list_display = ['product', 'new_rate', 'month']
