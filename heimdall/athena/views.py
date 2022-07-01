@@ -16,7 +16,7 @@ def home_view(request):
         if new_data_form.is_valid():
 
             new_data_form.save()
-            return redirect('/  ')
+            return redirect('/')
     new_data_form = NewDataForm(cmp_id=request.user.company_id)
     scraped_datas = ScrapedData.objects.all()
     context = {
@@ -39,7 +39,7 @@ def predict_view(request):
         new_rate_form = NewRateForm(request.POST, cmp_id=request.user.company_id)
         if new_rate_form.is_valid():
             new_rate_form.save()
-            return redirect('athena/')
+            return redirect('/')
 
     new_rate_form = NewRateForm(cmp_id=request.user.company_id)
     prod_rates = NewRate.objects.all().order_by('-generated_on')
