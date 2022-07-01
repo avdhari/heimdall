@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 # from django.http.response import Http404
 
 from heimdall.users.models import User, Company, Product, ProductKeyword  # noqa
-from heimdall.users.forms import NewProductForm, NewProductKeywordForm
+from heimdall.users.forms import NewProductForm, NewProductKeywordForm, EditKeywordsForm
 
 class AdminMixin(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
@@ -63,14 +63,15 @@ class HomeView(LoginRequiredMixin, generic.ListView):
 
 
 class ProductView(LoginRequiredMixin, generic.DetailView):
-    model = Product 
+    model = Product
     template_name = 'users/product_detail.html'
     slug_field = "slug"
 
     def get_context_data(self, **kwargs):
         context = super(ProductView, self).get_context_data(**kwargs)
-        keywords = ProductKeyword.objects.get(product_id=self.object.id).keywords
-        context['keywords'] = keywords.split('\n')
+        keywords = ProductKeyword.objects.get(product_id=self.object.id)
+        context['keyword'] = keywords.keywords.split('\n')
+        context['keywords'] = ProductKeyword.objects.get(product_id=self.object.id)
         return context
 
 
@@ -104,3 +105,19 @@ def new_keyword_view(request):
         "new_keyword_form": new_keyword_form,
     }
     return render(request, 'users/new_keyword.html', context)
+
+
+def edit_keyword_view(request, pk):
+    product_keyword = ProductKeyword.objects.get(id=pk)
+
+    if request.method == 'POST':
+        keyword_form = EditKeywordsForm(request.POST,  instance=product_keyword)
+        if keyword_form.is_valid():
+            keyword_form.save()
+            return redirect('/')
+    keyword_form = EditKeywordsForm(instance=product_keyword)
+    context = {
+        'keyword_form': keyword_form
+        }
+
+    return render(request, 'users/edit_keywords.html', context)

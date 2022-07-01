@@ -7,13 +7,15 @@ from heimdall.users.views import (
     product_view,
     new_product_view,
     new_keyword_view,
+    edit_keyword_view
 )
 from heimdall.users import views
 
 app_name = "users"
 urlpatterns = [
     path("new-product/", view=new_product_view, name="new-product"),
-    path("new-keywords/", view=new_keyword_view, name="new-keyworsd"),
+    path("new-keywords/", view=new_keyword_view, name="new-keywords"),
+    path("edit-keywords/<int:pk>/", view=edit_keyword_view, name="edit-keywords"),
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
     path("<str:username>/", view=user_detail_view, name="detail"),

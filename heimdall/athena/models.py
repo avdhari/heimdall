@@ -7,6 +7,7 @@ from heimdall.athena.utils import get_raw_data, get_text_data, get_title
 import numpy as np
 from heimdall.users.ml_utils import get_new_rate
 
+
 class BaseModel(models.Model):
     is_removed = models.BooleanField(default=False)
 

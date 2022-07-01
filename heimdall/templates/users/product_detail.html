@@ -15,11 +15,12 @@
 <div class="card" style="width: 250px; height: 200px; display: table; ">
     <div style="padding-left: 10px; display: table-cell; vertical-align: middle;">
       <h4>Keywords:</h4>
-      {% for keyword in keywords  %}
+      {% for keyword in keyword  %}
           {{keyword}} <br>
       {% endfor %}
       <!-- <div> -->
-          <a href="#" class="btn btn-sm btn-primary">Add Keywords</a>
+        <a href="{% url 'users:edit-keywords' keywords.pk %}" class="btn btn-sm btn-primary">Add Keywords</a>
+
       <!-- </div> -->
     </div>
  </div>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<h1>edit keywords</h1>
+
+Product: {{keywords.product}}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{keyword_form.as_p}}
+    <button class="btn btn-success">&nbsp; Update &nbsp; </button>        
+</form>
+
+{% endblock %}

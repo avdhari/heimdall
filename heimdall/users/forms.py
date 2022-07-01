@@ -43,3 +43,14 @@ class NewProductKeywordForm(forms.ModelForm):
         self.fields['product'].queryset = Product.objects.filter(company_id=cmp_id)
         self.fields['company'].queryset = Company.objects.filter(id=cmp_id)
 
+
+class EditKeywordsForm(forms.ModelForm):
+    class Meta:
+        model = ProductKeyword
+        fields = ('keywords',)
+    
+    def __init__(self, *args, **kwargs):
+        super(EditKeywordsForm, self).__init__(*args, **kwargs)
+        product_keywords = kwargs.pop('instance')
+        self.fields['keywords'].queryset = ProductKeyword.objects.get(id=product_keywords.id)
+    
